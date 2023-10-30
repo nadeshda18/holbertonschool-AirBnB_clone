@@ -10,7 +10,7 @@ class BaseModel:
 
     def __init__(self):
         """Initialization of the class"""
-        self.id = (uuid.uuid4{})
+        self.id = uuid.uuid4()
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
