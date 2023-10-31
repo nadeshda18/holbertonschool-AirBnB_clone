@@ -8,7 +8,6 @@ def do_show = print the string representation of an instance
 def do_destroy = delete an instance based on the class name and id
 def do_all = print all string representation of all instances
 def do_update = update an instance based on the class name and id
-def help = show this message
 """
 
 import cmd
