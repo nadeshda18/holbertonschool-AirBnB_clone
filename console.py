@@ -8,7 +8,7 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """defines the class HBNBCommand"""
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def do_quit(self, arg):
         """Exit the program"""
@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
         """modify the empty line + ENTER"""
         pass
 
-    def create(self, arg):
+    def do_create(self, arg):
         """create a new instance of BaseModel"""
         if len(arg) == 0:
             print("** class name missing **")
