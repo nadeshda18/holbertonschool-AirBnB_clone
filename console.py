@@ -1,5 +1,14 @@
 #!/usr/bin/python3
-"""entry point of the command interpreter"""
+"""entry point of the command interpreter
+def do_quit = exit the program
+def do_EOF = exit the program
+def emptyline = do nothing when emptyline + ENTER
+def do_create = create a new instance of BaseModel
+def do_show = print the string representation of an instance
+def do_destroy = delete an instance based on the class name and id
+def do_all = print all string representation of all instances
+def do_update = update an instance based on the class name and id
+"""
 
 import cmd
 from models.base_model import BaseModel
