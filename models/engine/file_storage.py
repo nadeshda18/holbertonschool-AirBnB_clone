@@ -35,7 +35,7 @@ class FileStorage:
                 objs = json.load(f)
             for key, value in objs.items():
                 cls_name = value["__class__"]
-                cls = FileStorage.CLASS_DICT.get[cls_name]
+                cls = FileStorage.CLASS_DICT.get(cls_name)
                 if cls:
                     instance = cls(**value)
                     FileStorage.__objects[key] = instance
