@@ -14,6 +14,7 @@ def help = display this message
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -37,6 +38,8 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         elif arg != "BaseModel":
+            print("** class doesn't exist")
+        elif arg != "User":
             print("** class doesn't exist **")
         else:
             new_instance = BaseModel()
@@ -48,6 +51,8 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         elif arg.split()[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif arg.split()[0] != "User":
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
@@ -63,6 +68,8 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         elif arg.split()[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif arg.split()[0] != "User":
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
@@ -80,6 +87,8 @@ class HBNBCommand(cmd.Cmd):
             print([str(value) for value in storage.all().values()])
         elif arg.split()[0] != "BaseModel":
             print("** class doesn't exist **")
+        elif arg.split()[0] != "User":
+            print("** class doesn't exist **")
         else:
             print([str(value) for value in storage.all().values()])
 
@@ -88,6 +97,8 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         elif arg.split()[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif arg.split()[0] != "User":
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
