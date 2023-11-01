@@ -8,13 +8,12 @@ def do_show = print the string representation of an instance
 def do_destroy = delete an instance based on the class name and id
 def do_all = print all string representation of all instances
 def do_update = update an instance based on the class name and id
-def help = display this message
 """
 
 import cmd
 from models.base_model import BaseModel
 from models import storage
-from models.user import User
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -30,29 +29,26 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """modify the empty line + ENTER"""
+        """do nothing when receiving an empty line followed by ENTER"""
         pass
 
     def do_create(self, arg):
         """create a new instance of BaseModel"""
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg != "BaseModel":
+        arg_list = arg.split()
+        if arg_list[0] != FileStorage.CLASS_DICT:
             print("** class doesn't exist")
-        elif arg != "User":
-            print("** class doesn't exist **")
-        else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+        new_instance = FileStorage.CLASS_DICT[arg_list[0]]()
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, arg):
         """print the string representation of an instance"""
+        arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
-            print("** class doesn't exist **")
-        elif arg.split()[0] != "User":
+        elif arg.split()[0] != FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
@@ -65,11 +61,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """delete an instance based on the class name and id"""
+        arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
-            print("** class doesn't exist **")
-        elif arg.split()[0] != "User":
+        elif arg.split()[0] != FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
@@ -83,22 +78,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """print all string representation of all instances"""
+        arg = arg.split()
         if len(arg) == 0:
             print([str(value) for value in storage.all().values()])
-        elif arg.split()[0] != "BaseModel":
-            print("** class doesn't exist **")
-        elif arg.split()[0] != "User":
+        elif arg.split()[0] != FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         else:
             print([str(value) for value in storage.all().values()])
 
     def do_update(self, arg):
         """update an instance based on the class name and id"""
+        arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
-            print("** class doesn't exist **")
-        elif arg.split()[0] != "User":
+        elif arg.split()[0] != FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
