@@ -17,7 +17,7 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
     CLASS_DICT = {"BaseModel": BaseModel,
-                  "User": User,
+                "User": User,
                   "State": State,
                   "City": City,
                   "Amenity": Amenity,
