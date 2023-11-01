@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         arg_list = arg.split()
-        if arg_list[0] != FileStorage.CLASS_DICT:
+        if arg_list[0] not in FileStorage.CLASS_DICT:
             print("** class doesn't exist")
         new_instance = FileStorage.CLASS_DICT[arg_list[0]]()
         new_instance.save()
@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg.split()[0] != FileStorage.CLASS_DICT:
+        elif arg.split()[0] not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print([str(value) for value in storage.all().values()])
-        elif arg.split()[0] != FileStorage.CLASS_DICT:
+        elif arg.split()[0] not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         else:
             print([str(value) for value in storage.all().values()])
@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg.split()[0] != FileStorage.CLASS_DICT:
+        elif arg.split()[0] not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
         elif len(arg.split()) == 1:
             print("** instance id missing **")
