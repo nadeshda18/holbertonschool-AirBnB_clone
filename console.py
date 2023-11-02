@@ -14,7 +14,12 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
-
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """defines the class HBNBCommand"""
@@ -80,19 +85,19 @@ class HBNBCommand(cmd.Cmd):
         if class_name is None:
             print("** class name missing **")
             return
-        elif class_name not in FileStorage.CLASS_DICT:
+        if class_name not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
             return
-        elif new_instance_id is None:
+        if new_instance_id is None:
             print("** instance id missing **")
             return
-        key = "{}.{}".format(class_name, new_instance_id)
+        key = "{}.{}".format(class_name, str(new_instance_id))
         if key in storage._FileStorage__objects:
+            del storage._FileStorage__objects[key]
+            storage.save()
+        else:
             print("** no instance found **")
             return
-
-        del storage._FileStorage__objects[key]
-        FileStorage.save()
 
     def do_all(self, arg):
         """print all string representation of all instances"""
