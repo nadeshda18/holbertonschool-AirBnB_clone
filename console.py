@@ -23,10 +23,18 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Exit the program with quit"""
         return True
+    
+    def help_quit(self):
+        """help quit function"""
+        print("Quit command to exit the program")
 
     def do_EOF(self, arg):
         """Exit the program"""
         return True
+    
+    def help_EOF(self):
+        """help enf of file function"""
+        print("EOF command to exit the program")
 
     def emptyline(self):
         """do nothing when receiving an empty line followed by ENTER"""
@@ -34,11 +42,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """create a new instance of BaseModel"""
-        if len(arg) == 0:
+        if not arg:
             print("** class name missing **")
+            return
         arg_list = arg.split()
         if arg_list[0] not in FileStorage.CLASS_DICT:
             print("** class doesn't exist")
+            return
         new_instance = FileStorage.CLASS_DICT[arg_list[0]]()
         new_instance.save()
         print(new_instance.id)
@@ -46,66 +56,81 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """print the string representation of an instance"""
         arg = arg.split()
-        if len(arg) == 0:
+        class_name = arg[0] if arg else None
+        new_instance_id = arg[1] if len(arg) > 1 else None
+        if class_name is None:
             print("** class name missing **")
-        elif arg.split()[0] not in FileStorage.CLASS_DICT:
+        elif class_name not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+            return
+        elif new_instance_id is None:
             print("** instance id missing **")
-        else:
-            key = arg.split()[0] + "." + arg.split()[1]
-            if key in storage.all():
-                print(storage.all()[key])
-            else:
-                print("** no instance found **")
+            return
+        key = "{}.{}".format(class_name, new_instance_id)
+        if key not in storage._FileStorage__objects:
+            print("** no instance found **")
+            return
+        print(storage._FileStorage__objects[key])
 
     def do_destroy(self, arg):
         """delete an instance based on the class name and id"""
         arg = arg.split()
-        if len(arg) == 0:
+        class_name = arg[0] if arg else None
+        new_instance_id = arg[1] if len(arg) > 1 else None
+        if class_name is None:
             print("** class name missing **")
-        elif arg.split()[0] != FileStorage.CLASS_DICT:
+            return
+        elif class_name not in  FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+            return
+        elif new_instance_id is None:
             print("** instance id missing **")
-        else:
-            key = arg.split()[0] + "." + arg.split()[1]
-            if key in storage.all():
-                del storage.all()[key]
-                storage.save()
-            else:
-                print("** no instance found **")
+            return
+        key = "{}.{}".format(class_name, new_instance_id)
+        if key in storage._FileStorage__objects:
+            print("** no instance found **")
+            return
+
+        del storage._FileStorage__objects[key]
+        FileStorage.save()
 
     def do_all(self, arg):
         """print all string representation of all instances"""
         arg = arg.split()
-        if len(arg) == 0:
-            print([str(value) for value in storage.all().values()])
-        elif arg.split()[0] not in FileStorage.CLASS_DICT:
+        class_name = arg[0] if arg else None
+        objs_to_print = []
+        if class_name and class_name not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
-        else:
-            print([str(value) for value in storage.all().values()])
+            return
+        for key, value in storage._FileStorage__objects.items():
+            if not class_name or key.split(".")[0] == class_name:
+                objs_to_print.append(str(value))
+        print(objs_to_print)
 
     def do_update(self, arg):
         """update an instance based on the class name and id"""
-        arg = arg.split()
-        if len(arg) == 0:
+        arg_list = arg.split()
+        if len(arg_list) == 0:
             print("** class name missing **")
-        elif arg.split()[0] not in FileStorage.CLASS_DICT:
+            return
+        if arg_list[0] not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+            return
+        if len(arg_list) == 1:
             print("** instance id missing **")
-        elif len(arg.split()) == 2:
+            return
+        key = "{}.{}".format(arg_list[0], arg_list[1])
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+        if len(arg_list) == 2:
             print("** attribute name missing **")
-        elif len(arg.split()) == 3:
+            return
+        if len(arg_list) == 3:
             print("** value missing **")
-        else:
-            key = arg.split()[0] + "." + arg.split()[1]
-            if key in storage.all():
-                setattr(storage.all()[key], arg.split()[2], arg.split()[3])
-                storage.all()[key].save()
-            else:
-                print("** no instance found **")
+            return
+        setattr(storage.all()[key], arg_list[2], arg_list[3])
+        storage.save()
 
 
 if __name__ == '__main__':
