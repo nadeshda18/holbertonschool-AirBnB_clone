@@ -23,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Exit the program with quit"""
         return True
-    
+
     def help_quit(self):
         """help quit function"""
         print("Quit command to exit the program")
@@ -31,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """Exit the program"""
         return True
-    
+
     def help_EOF(self):
         """help enf of file function"""
         print("EOF command to exit the program")
@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name is None:
             print("** class name missing **")
             return
-        elif class_name not in  FileStorage.CLASS_DICT:
+        elif class_name not in FileStorage.CLASS_DICT:
             print("** class doesn't exist **")
             return
         elif new_instance_id is None:
