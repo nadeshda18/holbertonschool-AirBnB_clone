@@ -17,6 +17,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(my_model.created_at, datetime)
         self.assertIsInstance(my_model.updated_at, datetime)
 
+    def test_no_args_instantiates(self):
+        self.assertEqual(BaseModel, type(BaseModel()))
+
     def test_save(self):
         """Test the save method of BaseModel."""
         my_model = BaseModel()
@@ -32,6 +35,19 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(model_dict['id'], my_model.id)
         self.assertIsInstance(model_dict['created_at'], str)
         self.assertIsInstance(model_dict['updated_at'], str)
+
+    def test_str_representation(self):
+        """Test string representation"""
+        dt = datetime.today()
+        dt_repr = repr(dt)
+        bm = BaseModel()
+        bm.id = "123456"
+        bm.created_at = bm.updated_at = dt
+        bmstr = bm.__str__()
+        self.assertIn("[BaseModel] (123456)", bmstr)
+        self.assertIn("'id': '123456'", bmstr)
+        self.assertIn("'created_at': " + dt_repr, bmstr)
+        self.assertIn("'updated_at': " + dt_repr, bmstr)
 
 
 if __name__ == "__main__":
