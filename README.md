@@ -105,5 +105,4 @@ $ python3 -m unittest discover tests
 ## Authors
 
 Juan Rodriguez
-
 Nadja Miranda
