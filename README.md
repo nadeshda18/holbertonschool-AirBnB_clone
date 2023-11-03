@@ -28,6 +28,13 @@ The command interpreter is used to manage the whole application's functionality 
 
 -destroy an object
 
+## How to Start It
+
+To start the command interpreter, simply run the `console.py` file.
+
+```bash
+python console.py
+
 ## Usage
 
 Your console should work like this in interactive mode:
