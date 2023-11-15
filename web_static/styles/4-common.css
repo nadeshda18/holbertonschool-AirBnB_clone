@@ -6,8 +6,9 @@ body {
     font-family: Circular, "Helvetica Neue", Ariel, sans-serif;
 }
 
-div.container {
+.container {
     max-width: 1000px;
     margin: 30px auto;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
