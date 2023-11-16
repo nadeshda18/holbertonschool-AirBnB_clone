@@ -11,7 +11,6 @@ section.filters {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
 }
-
 section.filters button {
     font-size: 18px;
     background-color: #FF5A5F;
@@ -47,7 +46,8 @@ section.filters button:hover {
     margin-top: 20px;
     margin-bottom: 0px;
     text-align: left;
-    margin-left: 30px;
+    padding-left: 50px;
+
 }
 
 .locations h4,
@@ -57,31 +57,46 @@ section.filters button:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     text-align: left;
-    margin-left: 30px;
+    padding-left: 50px;
+}
+
+.popover {
+    display: none;
+    position: relative;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1;
+    list-style-type: none;
+}
+
+.popover h2 {
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    list-style-type: none;
+}
+
+.locations .popover li {
+    list-style-type: none;
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: -10px;
+}
+
+.amenities .popover li {
+    list-style-type: none;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: -10px;
 }
 
 .locations:hover .popover,
 .amenities:hover .popover {
     display: block;
-    width: 100%;
-    position: static;
-    align-items: left;
-    margin: 0;
 }
 
-.locations:hover .popover h3 {
-    font-weight: 600;
-    margin-bottom: 0;
-    padding-left: 0;
-}
-
-.popover {
-    display: none;
-    position: absolute;
-    box-sizing: border-box;
-    background-color: #FAFAFA;
-    width: 100%;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    list-style-type: none;
-}
