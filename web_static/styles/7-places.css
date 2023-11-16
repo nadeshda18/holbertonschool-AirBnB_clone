@@ -7,13 +7,13 @@
 h1 {
     width: 95%;
     text-align: left;
-    font-size: 95%;
     display: block;
     margin-top: 0px;
     margin-left: 20px;
     margin-bottom: 5px;
     font-size: 30px;
 }
+
 article {
     display: inline-block;
     width: 390px;

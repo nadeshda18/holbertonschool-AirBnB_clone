@@ -47,7 +47,7 @@ section.filters button:hover {
     margin-top: 20px;
     margin-bottom: 0px;
     text-align: left;
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 .locations h4,
@@ -57,5 +57,5 @@ section.filters button:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     text-align: left;
-    margin-left: 30px;
+    margin-left: 50px;
 }

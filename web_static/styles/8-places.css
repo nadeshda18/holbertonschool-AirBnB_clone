@@ -7,7 +7,7 @@
 }
 
 h1 {
-    width: 100%;
+    width: 95%;
     text-align: left;
     display: block;
     margin-top: 0px;
@@ -24,12 +24,12 @@ article {
     border: 1px solid #FF5a5F;
     border-radius: 4px;
     text-align: center;
-    padding: 5px 0px;
+    padding: 20px 0px;
 }
 
 .places h2 {
     font-size: 30px;
-    padding: 5px;
+    padding: 0px;
     margin: auto;
 }
 
