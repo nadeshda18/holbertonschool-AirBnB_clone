@@ -82,7 +82,7 @@ section.filters button:hover {
 .locations .popover li {
     list-style-type: none;
     text-align: left;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 10px;
     margin-left: -10px;
 }
@@ -92,7 +92,7 @@ section.filters button:hover {
     text-align: left;
     margin-top: 10px;
     margin-bottom: 5px;
-    margin-left: -10px;
+    margin-left: 30px;
 }
 
 .locations:hover .popover,
